@@ -13,7 +13,7 @@ if [[ $1 == init ]]; then
     # This allows users to run entrypoint init inside a running conainter
     # which is useful in a k8s environment.
     # || true to make sure this would not fail in case there is no running instance.
-    killall protonmail-bridge || true
+    kill `pidof /protonmail/bridge` || true
 
     # Login
     /protonmail/proton-bridge --cli $@
