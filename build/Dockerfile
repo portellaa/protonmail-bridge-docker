@@ -1,23 +1,22 @@
-# Use carlosedp/golang for riscv64 support
-FROM carlosedp/golang:1.18 AS build
+FROM okteto/golang:1.21 AS build
 
 # Install dependencies
-RUN apt-get update && apt-get install -y git build-essential libsecret-1-dev
+RUN apt update && apt install -y git build-essential libsecret-1-dev
 
 # Build
 WORKDIR /build/
 COPY build.sh VERSION /build/
 RUN bash build.sh
 
-FROM ubuntu:jammy
-LABEL maintainer="Xiaonan Shen <s@sxn.dev>"
+FROM debian:12-slim
+LABEL maintainer="Luis Portela <port3la@pm.me>"
 
 EXPOSE 25/tcp
 EXPOSE 143/tcp
 
 # Install dependencies and protonmail bridge
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends socat pass libsecret-1-0 ca-certificates \
+RUN apt update \
+    && apt install -y --no-install-suggests --no-install-recommends pkill socat pass libsecret-1-0 ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy bash scripts
