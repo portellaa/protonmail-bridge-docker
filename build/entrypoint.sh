@@ -16,7 +16,7 @@ if [[ $1 == init ]]; then
     kill `pidof /protonmail/bridge` || true
 
     # Login
-    /protonmail/proton-bridge --cli $@
+    /protonmail/bridge --cli $@
 
 else
 
@@ -30,6 +30,6 @@ else
     # Fake a terminal, so it does not quit because of EOF...
     rm -f faketty
     mkfifo faketty
-    cat faketty | /protonmail/proton-bridge --cli $@
+    cat faketty | /protonmail/bridge --cli $@
 
 fi
