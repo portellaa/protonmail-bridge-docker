@@ -16,7 +16,7 @@ EXPOSE 143/tcp
 
 # Install dependencies and protonmail bridge
 RUN apt update \
-    && apt install -y --no-install-suggests --no-install-recommends pkill socat pass libsecret-1-0 ca-certificates \
+    && apt install -y --no-install-suggests --no-install-recommends socat pass libsecret-1-0 ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy bash scripts
