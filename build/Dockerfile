@@ -8,7 +8,7 @@ WORKDIR /build/
 COPY build.sh VERSION /build/
 RUN bash build.sh
 
-FROM debian:12-slim
+FROM ubuntu:jammy
 LABEL maintainer="Luis Portela <port3la@pm.me>"
 
 EXPOSE 25/tcp
